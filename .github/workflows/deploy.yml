@@ -32,7 +32,7 @@ jobs:
       - name: "SSH into Machine"
         uses: appleboy/ssh-action@master
         with:
-          host: ${{secrets.MACHINEHOST}}
+          host: ${{secrets.MACHINE_HOST}}
           username: ${{secrets.MACHINE_USERNAME}}
           key: ${{secrets.MACHINE_SSH_KEY}}
           script: |
