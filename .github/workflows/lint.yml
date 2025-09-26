@@ -1,12 +1,12 @@
-name: Build On PR
-
+name: "Lint project"
 on:
   pull_request:
     branches:
       - main
 jobs:
-  build:
-    name: "Build the project"
+  lint:
+    name: "Lint"
+    # needs: build
     runs-on: ubuntu-latest
     steps:
       - name: "Clone"
@@ -18,4 +18,5 @@ jobs:
       - name: "Install Dependencies"
         run: npm install
       - name: "Build"
-        run: npm run build
+        run: npm run lint
+
