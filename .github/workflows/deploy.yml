@@ -24,3 +24,19 @@ jobs:
           tags: amannabidev/deployment-app:latest
       - name: "Verify the Docker Image"
         run: docker pull amannabidev/deployment-app:latest
+  deploy-to-ec2:
+    name: "Deploy to EC2"
+    runs-on: ubuntu-latest
+    needs: build-docker-and-push
+    steps:
+      - name: "SSH into Machine"
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.MACHINEHOST}}
+          username: ${{secrets.MACHINE_USERNAME}}
+          key: ${{secrets.MACHINE_SSH_KEY}}
+          script: |
+            docker pull amannabidev/deployment-app:latest
+            docker stop web-app || true
+            docker rm web-app || true
+            docker run -d --name web-app -p 3000:3000 amannabidev/deployment-app:latest
