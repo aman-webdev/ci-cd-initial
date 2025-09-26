@@ -39,4 +39,4 @@ jobs:
             sudo docker pull amannabidev/deployment-app:latest
             sudo docker stop web-app || true
             sudo docker rm web-app || true
-            sudo docker run -d --name web-app -p 3000:3000 amannabidev/deployment-app:latest
+            sudo docker run --restart unless-stopped -d --name web-app -p 3000:3000 amannabidev/deployment-app:latest
