@@ -23,4 +23,4 @@ jobs:
           push: true
           tags: amannabidev/deployment-app:latest
       - name: "Verify the Docker Image"
-        uses: docker pull amannabidev/deployment-app:latest
+        run: docker pull amannabidev/deployment-app:latest
